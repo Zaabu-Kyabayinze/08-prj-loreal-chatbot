@@ -19,10 +19,10 @@ function appendMessage(role, content) {
   msgDiv.textContent = content;
   chatWindow.appendChild(msgDiv);
   chatWindow.scrollTop = chatWindow.scrollHeight;
-  // Only speak if this is an AI message and voiceModeActive is true
+  // Always speak AI messages
   if (role === "ai" && voiceModeActive) {
     speak(content);
-    voiceModeActive = false; // Reset after speaking
+    voiceModeActive = false;
   }
 }
 
