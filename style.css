@@ -106,6 +106,27 @@ body {
   box-shadow: 0 6px 32px 0 #0002;
   backdrop-filter: blur(2px);
   transition: box-shadow 0.4s cubic-bezier(0.77, 0, 0.18, 1), background 0.4s;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #bbaaff #f3eaff;
+}
+
+/* Custom scrollbar for Webkit browsers */
+.chat-window::-webkit-scrollbar {
+  width: 8px;
+  background: #f3eaff;
+  border-radius: 8px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #bbaaff 0%, #e0c3fc 100%);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #bbaaff33;
+  transition: background 0.3s;
+}
+
+.chat-window::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #e0c3fc 0%, #bbaaff 100%);
 }
 
 .chat-window:focus-within,
@@ -133,10 +154,12 @@ body {
   from {
     opacity: 0;
     transform: translateY(20px) scale(0.98);
+    filter: blur(2px) brightness(1.1);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+    filter: blur(0) brightness(1);
   }
 }
 
@@ -241,6 +264,59 @@ body {
 .chat-form button:focus {
   outline: 2px solid #000;
   outline-offset: 2px;
+}
+
+/* Voice button for accessibility */
+.voice-btn {
+  background: linear-gradient(90deg, #bbaaff 30%, #e0c3fc 70%);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 2px 12px #bbaaff33;
+  font-size: 22px;
+}
+
+.voice-btn.active {
+  background: linear-gradient(90deg, #e0c3fc 30%, #bbaaff 70%);
+}
+
+.voice-btn:focus {
+  outline: 2px solid #bbaaff;
+}
+
+/* Attach file button styling */
+.attach-btn {
+  background: linear-gradient(135deg, #e0c3fc 0%, #bbaaff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 2px 12px #bbaaff33;
+  font-size: 22px;
+}
+
+.attach-btn:focus {
+  outline: 2px solid #bbaaff;
+}
+
+.attach-btn:hover {
+  background: linear-gradient(135deg, #bbaaff 0%, #e0c3fc 100%);
 }
 
 /* visually hidden */
@@ -461,5 +537,167 @@ body {
   .site-footer {
     font-size: 12px;
     margin: 32px 0 20px;
+  }
+}
+
+/* quiz modal */
+.quiz-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(230, 220, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeInDown 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.quiz-content {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 40px #bbaaff55;
+  padding: 32px 24px 24px 24px;
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.quiz-content h2 {
+  color: #bbaaff;
+  margin-bottom: 18px;
+}
+
+.quiz-content label {
+  display: block;
+  margin: 10px 0 4px 0;
+  font-weight: 500;
+}
+
+.quiz-content input[type="checkbox"],
+.quiz-content input[type="radio"] {
+  margin-right: 6px;
+}
+
+.quiz-submit {
+  margin-top: 18px;
+  background: linear-gradient(90deg, #bbaaff 30%, #e0c3fc 70%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.quiz-submit:hover {
+  background: linear-gradient(90deg, #e0c3fc 30%, #bbaaff 70%);
+}
+
+.quiz-close {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #bbaaff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.quiz-close:hover {
+  color: #e0c3fc;
+}
+
+.quiz-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 18px auto;
+  background: linear-gradient(90deg, #bbaaff 30%, #e0c3fc 70%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 2px 12px #bbaaff33;
+}
+
+.quiz-trigger:hover {
+  background: linear-gradient(90deg, #e0c3fc 30%, #bbaaff 70%);
+}
+
+/* Mood buttons */
+.mood-btn {
+  font-size: 1.1em;
+  border: none;
+  border-radius: 18px;
+  padding: 12px 22px;
+  margin: 6px 8px;
+  background: linear-gradient(90deg, #fff 60%, #e0c3fc 100%);
+  color: #4a2c6b;
+  box-shadow: 0 2px 12px #bbaaff22;
+  cursor: pointer;
+  transition: box-shadow 0.3s cubic-bezier(0.77, 0, 0.18, 1),
+    background 0.3s cubic-bezier(0.77, 0, 0.18, 1),
+    transform 0.2s cubic-bezier(0.77, 0, 0.18, 1);
+  outline: none;
+  opacity: 1;
+}
+
+.mood-btn.mood-glow,
+.mood-btn:focus {
+  box-shadow: 0 0 0 4px #e0c3fc88, 0 4px 24px #bbaaff55;
+  background: linear-gradient(90deg, #e0c3fc 0%, #fff 100%);
+  transform: scale(1.07);
+}
+
+.mood-btn.mood-selected {
+  background: linear-gradient(90deg, #bbaaff 0%, #e0c3fc 100%);
+  color: #fff;
+  box-shadow: 0 0 0 6px #bbaaff44, 0 6px 32px #e0c3fc55;
+  transform: scale(0.98);
+  transition: all 0.25s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+/* Optional: unique color accents for each mood */
+.mood-btn.mood-date {
+  background: linear-gradient(90deg, #ffb6c1 0%, #fff 100%);
+}
+.mood-btn.mood-morning {
+  background: linear-gradient(90deg, #ffe066 0%, #fff 100%);
+}
+.mood-btn.mood-boardroom {
+  background: linear-gradient(90deg, #b0b0b0 0%, #fff 100%);
+}
+.mood-btn.mood-weekend {
+  background: linear-gradient(90deg, #b6fcd5 0%, #fff 100%);
+}
+.mood-btn.mood-redcarpet {
+  background: linear-gradient(90deg, #e0c3fc 0%, #fff 100%);
+}
+
+/* Animate modal content */
+.quiz-content.mood-animate {
+  animation: moodFadeIn 0.6s cubic-bezier(0.77, 0, 0.18, 1);
+}
+@keyframes moodFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

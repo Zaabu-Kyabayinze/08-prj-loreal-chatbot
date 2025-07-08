@@ -23,6 +23,55 @@
         <img src="loreal-logo.png" alt="L'Oréal Logo" class="loreal-logo" />
       </header>
 
+      <!-- Add inside .page-wrapper, above the chat area -->
+      <div id="quizModal" class="quiz-modal" style="display: none">
+        <div class="quiz-content">
+          <h2>Let’s find your perfect match!</h2>
+          <form id="quizForm">
+            <label>What’s your main skin concern?</label>
+            <div>
+              <label
+                ><input type="checkbox" name="concern" value="Acne" />
+                Acne</label
+              >
+              <label
+                ><input type="checkbox" name="concern" value="Dryness" />
+                Dryness</label
+              >
+              <label
+                ><input type="checkbox" name="concern" value="Aging" />
+                Aging</label
+              >
+              <label
+                ><input type="checkbox" name="concern" value="Sensitivity" />
+                Sensitivity</label
+              >
+            </div>
+            <label>What’s your skin type?</label>
+            <div>
+              <label
+                ><input type="radio" name="skinType" value="Oily" /> Oily</label
+              >
+              <label
+                ><input type="radio" name="skinType" value="Dry" /> Dry</label
+              >
+              <label
+                ><input type="radio" name="skinType" value="Combination" />
+                Combination</label
+              >
+              <label
+                ><input type="radio" name="skinType" value="Normal" />
+                Normal</label
+              >
+            </div>
+            <button type="submit" class="quiz-submit">
+              Get Recommendations
+            </button>
+          </form>
+          <button id="closeQuiz" class="quiz-close">&times;</button>
+        </div>
+      </div>
+
       <!------- Chat Area ------->
       <main>
         <section class="chatbox">
@@ -40,6 +89,16 @@
               autocomplete="off"
               required
             />
+            <button
+              type="button"
+              id="attachBtn"
+              class="attach-btn"
+              title="Attach a file"
+            >
+              <span class="material-icons" aria-hidden="true">attach_file</span>
+              <span class="visually-hidden">Attach file</span>
+            </button>
+            <input type="file" id="fileInput" class="visually-hidden" />
             <button type="submit" id="sendBtn">
               <span class="material-icons">send</span>
               <span class="visually-hidden">Send</span>
@@ -47,6 +106,12 @@
           </form>
         </section>
       </main>
+
+      <!-- Start Quiz Button -->
+      <button id="startQuiz" class="quiz-trigger">
+        <span class="material-icons" aria-hidden="true">filter_list</span>
+        Filter
+      </button>
 
       <!------- Footer Links ------->
       <footer class="site-footer">
